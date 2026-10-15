@@ -2,7 +2,7 @@ import { lazy, Suspense } from 'react'
 import Storefront from './pages/Storefront'
 import { isConfigured } from './lib/supabase'
 import './App.css'
-
+import { Analytics } from "@vercel/analytics/next"
 // The admin area is a separate chunk so customers never download it.
 const AdminApp = lazy(() => import('./admin/AdminApp'))
 
@@ -27,7 +27,9 @@ export default function App() {
     return (
       <Suspense fallback={<p className="status-msg" role="status">Loading…</p>}>
         <AdminApp />
+        <Analytics />
       </Suspense>
+      
     )
   }
   return <Storefront />
